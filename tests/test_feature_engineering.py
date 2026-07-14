@@ -53,8 +53,8 @@ def test_engineer_features_composite_indices():
     engineered = engineer_features(df, min_minutes=450)
     
     # 1 goal per 90, 1 assist per 90
-    # offensive = 1*0.7 + 1*0.3 = 1.0
-    assert engineered.iloc[0]['offensive_index'] == 1.0
+    # offensive = 1*0.5 + 1*0.3 + 0 (shots) = 0.8
+    assert engineered.iloc[0]['composite_offensive_index'] == 0.8
     
     # value_age_ratio = 5000000 / 25 = 200000
     assert engineered.iloc[0]['value_age_ratio'] == 200000.0

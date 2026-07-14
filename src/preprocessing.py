@@ -5,13 +5,22 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     """
     Cleans raw data by handling missing values, standardizing categoricals, and type coercion.
     """
-    # 1. Deduplication
-    df = df.drop_duplicates(subset=['player_id'])
+    # 1. Deduplication (player_id is the primary key)
+    df = df.drop_duplicates(subset=['player_id']).copy()
     
     # 2. Type coercion & Age calculation
     df['date_of_birth'] = pd.to_datetime(df['date_of_birth'], errors='coerce')
-    # Use 2024 as reference year for age to be consistent or just max date in appearances. We'll use 2024 for simplicity.
     df['age'] = 2024 - df['date_of_birth'].dt.year
+    
+    # 2.5 Standardize Categorical Labels (Position / Sub-position)
+    # Ensure consistent naming for positions
+    if 'sub_position' in df.columns:
+        df['sub_position'] = df['sub_position'].str.replace('Centre Back', 'Centre-Back')
+        df['sub_position'] = df['sub_position'].str.replace('CB', 'Centre-Back')
+        df['sub_position'] = df['sub_position'].str.strip().fillna('Unknown')
+    
+    if 'position' in df.columns:
+        df['position'] = df['position'].str.title().str.strip()
     
     # 3. Missing Value Handling
     
