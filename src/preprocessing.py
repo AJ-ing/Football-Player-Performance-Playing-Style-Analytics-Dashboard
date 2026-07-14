@@ -34,11 +34,11 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         if col in df.columns:
             df[col] = df[col].fillna(0)
         
-    # Categoricals to 'Unknown'
-    cat_cols = ['foot', 'country_of_citizenship']
+    # Categoricals to 'Unknown' and cast to string
+    cat_cols = ['foot', 'country_of_citizenship', 'first_name', 'last_name', 'name', 'position', 'sub_position']
     for col in cat_cols:
         if col in df.columns:
-            df[col] = df[col].fillna('Unknown')
+            df[col] = df[col].fillna('Unknown').astype(str)
             
     # Market value imputation (median by position)
     if 'market_value_in_eur' in df.columns:
@@ -50,5 +50,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     
     # Age imputation (median)
     df['age'] = df['age'].fillna(df['age'].median())
-
+    
+    # Cast all remaining object columns to string to prevent Parquet serialization errors
+    obj_cols = df.select_dtypes(include=['object']).columns
+    df[obj_cols] = df[obj_cols].astype(str)
+    
     return df
