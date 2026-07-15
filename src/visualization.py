@@ -24,7 +24,8 @@ def create_radar_chart(player_data: pd.Series, categories: list, title: str):
         ),
         showlegend=False,
         title=title,
-        margin=dict(l=40, r=40, t=40, b=40)
+        margin=dict(l=40, r=40, t=40, b=40),
+        template="plotly_dark"
     )
     return fig
 
@@ -52,7 +53,8 @@ def create_comparison_radar_chart(player_data: pd.DataFrame, categories: list, t
         ),
         showlegend=True,
         title=title,
-        margin=dict(l=40, r=40, t=40, b=40)
+        margin=dict(l=40, r=40, t=40, b=40),
+        template="plotly_dark"
     )
     return fig
 
@@ -65,7 +67,7 @@ def create_cluster_scatter(df: pd.DataFrame, x_col: str, y_col: str, color_col: 
         color=color_col,
         hover_data=['name', 'current_club_name', 'position', 'age'],
         title=f"Player Clusters: {x_col} vs {y_col}",
-        template="plotly_white"
+        template="plotly_dark"
     )
     fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
     return fig

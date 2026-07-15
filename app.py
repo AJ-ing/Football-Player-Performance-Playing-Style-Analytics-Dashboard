@@ -15,14 +15,35 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Apply basic styling to look premium
+# Apply premium styling and typography
 st.markdown("""
     <style>
-    .stApp {
-        background-color: #f8f9fa;
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Outfit', sans-serif !important;
     }
-    .css-1d391kg {
-        background-color: #ffffff;
+    
+    /* Make metrics stand out */
+    [data-testid="stMetricValue"] {
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        background: -webkit-linear-gradient(45deg, #00d2ff, #3a7bd5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Sleek container styling */
+    .stDataFrame {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #334155;
+    }
+    
+    /* Sidebar gradient */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        border-right: 1px solid #334155;
     }
     </style>
 """, unsafe_allow_html=True)

@@ -26,8 +26,8 @@ def render(df: pd.DataFrame):
             x=hist_col, 
             nbins=30,
             title=f"Distribution of {hist_col}",
-            template="plotly_white",
-            color_discrete_sequence=['#1f77b4']
+            template="plotly_dark",
+            color_discrete_sequence=['#00d2ff']
         )
         st.plotly_chart(fig_hist, use_container_width=True)
         
@@ -44,7 +44,7 @@ def render(df: pd.DataFrame):
             x='position', 
             y=box_col,
             title=f"{box_col} by Position",
-            template="plotly_white",
+            template="plotly_dark",
             color='position'
         )
         # Hide legend as x-axis already explains it
