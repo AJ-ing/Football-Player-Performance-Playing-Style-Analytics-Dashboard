@@ -91,3 +91,44 @@ def render(df: pd.DataFrame):
             st.plotly_chart(fig, use_container_width=True)
         else:
             st.warning("Required performance metrics for comparison are missing.")
+            
+    st.divider()
+    
+    # Similar Player Discovery
+    st.subheader("Similar Player Discovery")
+    st.markdown("Select a player to find others with a statistically similar playing style across all metrics.")
+    
+    target_player_name = st.selectbox(
+        "Select target player:",
+        options=[''] + filtered_df['name'].tolist(),
+        index=0
+    )
+    
+    if target_player_name:
+        try:
+            from src.similarity import find_similar_players
+            
+            # Get the player ID for the selected name
+            target_player = df[df['name'] == target_player_name].iloc[0]
+            target_id = target_player['player_id']
+            
+            # We use the same features that were clustered on
+            features = [
+                'goals_per_90', 'assists_per_90', 'yellow_cards_per_90', 'red_cards_per_90',
+                'shots_total_per_90', 'shot_conversion_rate', 'pass_completion_rate', 'duels_won_rate',
+                'composite_offensive_index', 'composite_defensive_index'
+            ]
+            available_features = [f for f in features if f in df.columns]
+            
+            if available_features:
+                similar_players = find_similar_players(df, player_id=target_id, features=available_features, top_n=5)
+                
+                st.write(f"Top 5 players similar to **{target_player_name}**:")
+                
+                # Display similar players
+                sim_display_cols = ['name', 'current_club_name', 'position', 'age', 'similarity_distance']
+                st.dataframe(similar_players[sim_display_cols], use_container_width=True)
+            else:
+                st.error("No valid features found for similarity computation.")
+        except Exception as e:
+            st.error(f"Error finding similar players: {e}")

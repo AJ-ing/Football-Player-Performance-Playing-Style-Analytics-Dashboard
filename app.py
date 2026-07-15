@@ -6,7 +6,7 @@ import sys
 # Add src to path if needed
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__))))
 
-from src.dashboard import player_explorer, cluster_explorer
+from src.dashboard import player_explorer, cluster_explorer, home, statistics
 
 st.set_page_config(
     page_title="Football Analytics Dashboard",
@@ -46,7 +46,7 @@ def main():
     st.sidebar.markdown("---")
     
     # Navigation
-    page = st.sidebar.radio("Navigation", ["Player Explorer", "Cluster Explorer"])
+    page = st.sidebar.radio("Navigation", ["Home", "Player Explorer", "Cluster Explorer", "Statistics"])
     
     # Load Data once and cache it
     with st.spinner("Loading player data..."):
@@ -57,10 +57,14 @@ def main():
         st.stop()
         
     # Router
-    if page == "Player Explorer":
+    if page == "Home":
+        home.render(df)
+    elif page == "Player Explorer":
         player_explorer.render(df)
     elif page == "Cluster Explorer":
         cluster_explorer.render(df)
+    elif page == "Statistics":
+        statistics.render(df)
         
     st.sidebar.markdown("---")
     st.sidebar.info("Football Player Performance Analytics v1.0")
