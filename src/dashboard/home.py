@@ -43,8 +43,20 @@ def render(df: pd.DataFrame):
        - **Archetyping:** The clusters are then analyzed and assigned descriptive labels (e.g., "Attackers", "Defenders") based on their dominant statistical traits.
     4. **Similarity Engine:** Using Euclidean distance across the scaled feature space, the system can instantly find the closest matches to any given player's unique playing style profile.
     
+    ### Key Metrics & Terminology
+    
+    To better understand the dashboard, here are definitions for the custom metrics used throughout:
+    
+    * **Composite Offensive Index:** A weighted score combining goals, assists, shots, and conversion rates to quantify a player's overall attacking output.
+    * **Composite Defensive Index:** A weighted score summarizing a player's defensive actions, such as duels won and defensive positioning.
+    * **Shot Conversion Rate:** The percentage of total shots taken that result in a goal.
+    * **Pass Completion Rate:** The percentage of attempted passes that successfully find a teammate.
+    * **Duels Won Rate:** The percentage of physical or aerial duels won against an opponent.
+    * **Value-Age Ratio:** A metric calculated by dividing a player's market value by their age, often used to identify young, high-potential prospects (lower age with high value yields a higher ratio).
+    
     ### Navigation
     - **Player Explorer:** Search for specific players, filter by position/age/value, compare players side-by-side on a radar chart, and discover statistically similar players.
     - **Cluster Explorer:** Visualize the entire player population on a 2D scatter plot to see how different archetypes separate from one another.
-    - **Statistics:** View distributions of key performance metrics across the dataset.
+    - **Statistics:** View distributions and correlations of key performance metrics across the dataset.
+    - **Settings:** View the configuration parameters used to generate the current dataset.
     """)

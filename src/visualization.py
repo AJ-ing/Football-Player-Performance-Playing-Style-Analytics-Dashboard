@@ -71,3 +71,17 @@ def create_cluster_scatter(df: pd.DataFrame, x_col: str, y_col: str, color_col: 
     )
     fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
     return fig
+
+def create_correlation_heatmap(df: pd.DataFrame, columns: list):
+    """Creates a correlation heatmap for the specified numeric columns."""
+    corr_matrix = df[columns].corr().round(2)
+    
+    fig = px.imshow(
+        corr_matrix,
+        text_auto=True,
+        aspect="auto",
+        color_continuous_scale="RdBu_r",
+        title="Feature Correlation Matrix",
+        template="plotly_dark"
+    )
+    return fig

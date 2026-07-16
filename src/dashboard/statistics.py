@@ -55,3 +55,28 @@ def render(df: pd.DataFrame):
     
     st.subheader("Summary Statistics")
     st.dataframe(df[display_cols].describe(), use_container_width=True)
+    
+    st.divider()
+    
+    st.subheader("Correlation Analysis")
+    st.markdown("Explore how different performance metrics correlate with each other. Select the metrics you want to include in the heatmap.")
+    
+    # Default selection for heatmap
+    default_corr_cols = [
+        'goals_per_90', 'assists_per_90', 'composite_offensive_index',
+        'composite_defensive_index', 'market_value_in_eur', 'age'
+    ]
+    available_corr_cols = [c for c in default_corr_cols if c in display_cols]
+    
+    selected_corr_cols = st.multiselect(
+        "Select metrics for correlation heatmap:",
+        options=display_cols,
+        default=available_corr_cols if available_corr_cols else display_cols[:5]
+    )
+    
+    if len(selected_corr_cols) >= 2:
+        from src.visualization import create_correlation_heatmap
+        fig_corr = create_correlation_heatmap(df, selected_corr_cols)
+        st.plotly_chart(fig_corr, use_container_width=True)
+    else:
+        st.info("Please select at least two metrics to view their correlations.")
