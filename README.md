@@ -1,4 +1,5 @@
 # ⚽ Football Player Performance & Playing Style Analytics Dashboard
+As Fifa is coming to an end and EA FC is about to launch, I thought of leveraging the vast amount of data available for players and creating a dashboard to analyze the player performance and playing style.
 
 An end-to-end data pipeline and Streamlit dashboard that analyzes football player performance, engineers custom playing style metrics, and clusters players using Machine Learning (K-Means) to identify unique stylistic archetypes.
 
@@ -6,22 +7,18 @@ An end-to-end data pipeline and Streamlit dashboard that analyzes football playe
 
 The dashboard is designed to be deployed on **Streamlit Community Cloud**.
 
-**Live URL:** [Insert Streamlit Cloud URL Here]
-
 > **Note on Architecture:** To respect the 1GB memory limits of the free tier of Streamlit Cloud, the data cleaning and clustering pipeline must be run **locally**. The dashboard itself is lightweight and serves the pre-computed static artifacts (`data/processed/players.parquet` and `models/kmeans_model.pkl`).
 
 ## 📸 Screenshots
 
-*(Replace the placeholder images below with actual screenshots of your dashboard)*
-
 ### Player Explorer & Comparison
-![Player Explorer Screenshot](docs/assets/placeholder_player_explorer.png)
+![Player Explorer Screenshot](docs/player_explorer.png)
 
 ### Cluster Archetype Analysis
-![Cluster Explorer Screenshot](docs/assets/placeholder_cluster_explorer.png)
+![Cluster Explorer Screenshot](docs/cluster_explorer.png)
 
 ### Correlation Heatmaps
-![Statistics Screenshot](docs/assets/placeholder_statistics.png)
+![Statistics Screenshot](docs/statistics.png)
 
 ## 🛠️ Features
 
@@ -85,6 +82,3 @@ pytest
 │   └── processed/             # Output Artifacts (parquet)
 └── models/                    # Output Artifacts (pkl)
 ```
-
-## ⚖️ License
-[Insert License Here]
