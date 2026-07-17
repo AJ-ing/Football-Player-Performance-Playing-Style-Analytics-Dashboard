@@ -27,6 +27,18 @@ The dashboard is designed to be deployed on **Streamlit Community Cloud**.
 * **Similarity Engine:** Uses Euclidean distance to instantly find the top 5 statistically similar players to any given target.
 * **Premium Dashboard:** Built with Streamlit, custom CSS, Google Fonts (Outfit), and a sleek dark-mode aesthetic featuring Plotly interactive charts.
 
+## 📊 Key Metrics & Terminology
+
+To move beyond basic counting stats, this project calculates several custom metrics to accurately quantify playing styles:
+
+* **Composite Offensive Index:** A weighted score combining goals, assists, shots, and conversion rates to quantify a player's overall attacking output and direct goal threat.
+* **Composite Defensive Index:** A weighted score summarizing a player's defensive actions, such as duels won and defensive positioning, relative to their playing time.
+* **Shot Conversion Rate:** The percentage of total shots taken that result in a goal. This highlights clinical finishing over pure shot volume.
+* **Pass Completion Rate:** The percentage of attempted passes that successfully find a teammate.
+* **Duels Won Rate:** The percentage of physical or aerial duels won against an opponent, measuring physicality and defensive robustness.
+* **Value-Age Ratio:** A metric calculated by dividing a player's market value by their age. This is used as a heuristic to identify high-potential prospects (a lower age combined with a high value yields a higher ratio).
+* **Per-90 Metrics:** All raw accumulation stats (like total goals or total yellow cards) are standardized to a "per 90 minutes played" basis. This prevents players from looking better simply because they played more matches.
+
 ## 💻 Local Setup & Execution
 
 ### 1. Installation
