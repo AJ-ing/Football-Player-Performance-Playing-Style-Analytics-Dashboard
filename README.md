@@ -1,5 +1,5 @@
 # ⚽ Football Player Performance & Playing Style Analytics Dashboard
-As Fifa is coming to an end and EA FC is about to launch, I thought of leveraging the vast amount of data available for players and creating a dashboard to analyze the player performance and playing style.
+As Fifa comes to an end and EA FC is about to launch, I thought of leveraging the vast amount of data available for players and creating a dashboard to analyze the player performance and playing style.
 
 An end-to-end data pipeline and Streamlit dashboard that analyzes football player performance, engineers custom playing style metrics, and clusters players using Machine Learning (K-Means) to identify unique stylistic archetypes.
 
